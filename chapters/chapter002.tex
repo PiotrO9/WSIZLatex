@@ -6,55 +6,25 @@ OSK-Manager jest aplikacją webową służącą do zarządzania ośrodkiem szkol
 \section{Wymagania funkcjonalne}
 \label{sec:wymaganiaFunkcjonalne}
 
-Wymagania funkcjonalne określają funkcje, które powinien udostępniać system OSK-Manager.
+Wymagania funkcjonalne określają funkcje, które powinien udostępniać system OSK-Manager. Podstawowym zadaniem systemu jest obsługa kont użytkowników oraz dostępu do aplikacji. Użytkownik powinien mieć możliwość zalogowania się za pomocą adresu e-mail i hasła, sprawdzenia aktualnej sesji, odświeżenia jej oraz wylogowania. System powinien rozróżniać role kursanta, instruktora, managera i administratora, ponieważ zakres dostępnych funkcji zależy od odpowiedzialności danej osoby. Uprawnieni użytkownicy powinni mieć możliwość rejestrowania kursantów i instruktorów, a każdy użytkownik powinien móc zarządzać podstawowymi danymi swojego profilu, takimi jak telefon, opis czy avatar.
 
-\begin{enumerate}
-  \item \textbf{WF-01. Logowanie użytkownika.} System powinien umożliwiać zalogowanie użytkownika za pomocą adresu e-mail i hasła.
-  \item \textbf{WF-02. Obsługa sesji.} System powinien umożliwiać odświeżenie sesji, sprawdzenie aktualnego użytkownika oraz wylogowanie.
-  \item \textbf{WF-03. Rejestracja użytkowników.} System powinien umożliwiać uprawnionym użytkownikom rejestrowanie kursantów i instruktorów.
-  \item \textbf{WF-04. Role użytkowników.} System powinien rozróżniać role: kursant, instruktor, manager i administrator.
-  \item \textbf{WF-05. Zarządzanie profilami.} System powinien umożliwiać edycję danych profilu użytkownika, w tym telefonu, opisu i avatara.
-  \item \textbf{WF-06. Zarządzanie OSK.} System powinien umożliwiać managerowi tworzenie, edycję, listowanie i usuwanie własnych ośrodków szkolenia kierowców.
-  \item \textbf{WF-07. Przypisanie użytkowników do OSK.} System powinien umożliwiać przypisywanie kursantów i instruktorów do wybranych szkół jazdy.
-  \item \textbf{WF-08. Zarządzanie kursantami.} System powinien umożliwiać przeglądanie listy kursantów, szczegółów kursanta, notatek oraz numeru PKK.
-  \item \textbf{WF-09. Zarządzanie instruktorami.} System powinien umożliwiać dodawanie, edycję, usuwanie i przeglądanie instruktorów przypisanych do OSK.
-  \item \textbf{WF-10. Kwalifikacje instruktorów.} System powinien przechowywać informację, do jakich typów kursów uprawniony jest instruktor.
-  \item \textbf{WF-11. Zarządzanie pojazdami.} System powinien umożliwiać dodawanie, edycję, usuwanie, zmianę statusu i dodawanie zdjęć pojazdów.
-  \item \textbf{WF-12. Typy kursów.} System powinien udostępniać słownik typów kursów, na przykład kategorii prawa jazdy.
-  \item \textbf{WF-13. Zarządzanie kursami.} System powinien umożliwiać tworzenie i edycję kursów powiązanych z kursantem, OSK i typem kursu.
-  \item \textbf{WF-14. Uczestnictwo w kursie.} System powinien umożliwiać przypisanie kursanta do kursu oraz zmianę statusu uczestnictwa.
-  \item \textbf{WF-15. Zarządzanie lekcjami.} System powinien umożliwiać tworzenie, edycję i przeglądanie lekcji teoretycznych oraz praktycznych.
-  \item \textbf{WF-16. Reguły lekcji praktycznej.} System powinien wymagać przypisania pojazdu do lekcji praktycznej.
-  \item \textbf{WF-17. Harmonogram szkoły.} System powinien prezentować harmonogram zajęć w ujęciu szkoły, instruktora lub kursanta.
-  \item \textbf{WF-18. Dostępność instruktora.} System powinien umożliwiać definiowanie domyślnych godzin pracy, wyjątków dziennych, blokad czasu i urlopów instruktora.
-  \item \textbf{WF-19. Wyliczanie wolnych terminów.} System powinien obliczać wolne okna czasowe instruktora na podstawie dostępności, blokad, urlopów i zaplanowanych lekcji.
-  \item \textbf{WF-20. Zapobieganie kolizjom.} System powinien blokować planowanie nakładających się lekcji dla tego samego instruktora lub pojazdu.
-  \item \textbf{WF-21. Wydarzenia instruktorskie.} System powinien umożliwiać tworzenie wydarzeń typu jazda lub teoria oraz przypisywanie do nich kursantów.
-  \item \textbf{WF-22. Obsługa płatności.} System powinien przechowywać informacje o planie płatności kursu i dokonanych wpłatach.
-  \item \textbf{WF-23. Oceny lekcji.} System powinien umożliwiać ocenę zakończonej jazdy przez uprawnionego kursanta.
-  \item \textbf{WF-24. Panel kursanta.} System powinien umożliwiać kursantowi podgląd własnych kursów i zaplanowanych lekcji.
-  \item \textbf{WF-25. Panel instruktora.} System powinien umożliwiać instruktorowi podgląd własnego harmonogramu i dostępności.
-\end{enumerate}
+Istotną częścią systemu jest zarządzanie ośrodkami szkolenia kierowców. Manager powinien mieć możliwość tworzenia, edycji, listowania i usuwania własnych ośrodków, a także przypisywania do nich kursantów oraz instruktorów. System powinien umożliwiać przeglądanie listy kursantów, szczegółów kursanta, notatek oraz numeru PKK. W przypadku instruktorów powinien obsługiwać dodawanie, edycję, usuwanie i przeglądanie osób przypisanych do danego ośrodka. Dodatkowo system powinien przechowywać informacje o kwalifikacjach instruktorów, czyli o typach kursów, które mogą oni prowadzić.
+
+System powinien wspierać obsługę zasobów ośrodka, przede wszystkim pojazdów i typów kursów. Manager powinien mieć możliwość dodawania, edycji, usuwania oraz zmiany statusu pojazdów, a także dodawania ich zdjęć. Aplikacja powinna również udostępniać słownik typów kursów, na przykład odpowiadających kategoriom prawa jazdy. Na tej podstawie możliwe powinno być tworzenie i edytowanie kursów powiązanych z kursantem, ośrodkiem oraz typem kursu. System powinien obsługiwać przypisanie kursanta do kursu oraz zmianę statusu uczestnictwa.
+
+Jednym z kluczowych obszarów funkcjonalnych jest harmonogram zajęć. System powinien umożliwiać tworzenie, edycję i przeglądanie lekcji teoretycznych oraz praktycznych. W przypadku lekcji praktycznej wymagane powinno być przypisanie pojazdu. Harmonogram powinien być dostępny w różnych ujęciach, między innymi z perspektywy szkoły, instruktora i kursanta. Instruktor powinien mieć możliwość definiowania domyślnych godzin pracy, wyjątków dziennych, blokad czasu oraz urlopów. Na podstawie tych danych, a także na podstawie zaplanowanych lekcji, system powinien obliczać wolne terminy instruktora. Aplikacja powinna blokować planowanie lekcji nakładających się czasowo dla tego samego instruktora lub pojazdu. Powinna także pozwalać na tworzenie wydarzeń instruktorskich, takich jak jazda albo teoria, oraz przypisywanie do nich kursantów.
+
+System powinien obejmować również wybrane funkcje rozliczeniowe i informacyjne. Dla kursu powinny być przechowywane informacje o planie płatności oraz dokonanych wpłatach. Kursant powinien mieć możliwość oceny zakończonej jazdy, jeżeli jest do tego uprawniony. Panel kursanta powinien zapewniać podgląd jego własnych kursów oraz zaplanowanych lekcji, natomiast panel instruktora powinien prezentować jego harmonogram i dostępność.
 
 \section{Wymagania niefunkcjonalne}
 \label{sec:wymaganiaNiefunkcjonalne}
 
-Wymagania niefunkcjonalne określają oczekiwane cechy jakościowe systemu OSK-Manager.
+Wymagania niefunkcjonalne określają oczekiwane cechy jakościowe systemu OSK-Manager. Jednym z najważniejszych wymagań jest bezpieczeństwo dostępu. Korzystanie z chronionych funkcji systemu powinno wymagać poprawnej sesji użytkownika, a operacje powinny być ograniczane zgodnie z rolą użytkownika oraz jego powiązaniem z konkretnym ośrodkiem szkolenia kierowców. Manager powinien zarządzać wyłącznie szkołami, których jest właścicielem, natomiast instruktor i kursant powinni widzieć jedynie dane związane z ich kontem oraz przypisanym ośrodkiem. Token odświeżający powinien być przechowywany w ciasteczku HTTP-only, a klucze serwisowe wykorzystywane przez backend nie powinny być dostępne po stronie klienta.
 
-\begin{enumerate}
-  \item \textbf{WN-01. Bezpieczeństwo dostępu.} Dostęp do chronionych funkcji systemu powinien wymagać poprawnej sesji użytkownika.
-  \item \textbf{WN-02. Kontrola uprawnień.} System powinien ograniczać operacje zgodnie z rolą użytkownika oraz jego powiązaniem z konkretnym OSK.
-  \item \textbf{WN-03. Izolacja danych szkół.} Manager powinien zarządzać wyłącznie szkołami, których jest właścicielem, a instruktor i kursant powinni widzieć tylko powiązane dane.
-  \item \textbf{WN-04. Spójność danych domenowych.} System powinien wymuszać powiązanie lekcji z kursem, kursem z OSK i typem kursu, a pojazdów oraz instruktorów z właściwą szkołą.
-  \item \textbf{WN-05. Brak podwójnych rezerwacji.} System powinien zapobiegać konfliktom terminów dla instruktorów i pojazdów.
-  \item \textbf{WN-06. Walidacja danych wejściowych.} Dane przekazywane do API powinny być walidowane po stronie backendu niezależnie od walidacji formularzy w interfejsie.
-  \item \textbf{WN-07. Bezpieczne przechowywanie sesji.} Token odświeżający powinien być przechowywany w ciasteczku HTTP-only, a klucze serwisowe Supabase wyłącznie po stronie backendu.
-  \item \textbf{WN-08. Utrzymywalność architektury.} Backend powinien zachowywać podział na trasy, kontrolery, serwisy, schematy walidacji i warstwę dostępu do danych.
-  \item \textbf{WN-09. Modularność frontendu.} Frontend powinien dzielić logikę na strony, komponenty, kompozycje, typy i warstwę BFF.
-  \item \textbf{WN-10. Responsywność.} Interfejs powinien być używalny na typowych ekranach komputerów i urządzeń mobilnych.
-  \item \textbf{WN-11. Czytelność interfejsu.} System powinien prezentować dane w sposób zrozumiały dla pracownika biura, instruktora i kursanta.
-  \item \textbf{WN-12. Obsługa błędów.} System powinien zwracać jednoznaczne komunikaty błędów dla sytuacji takich jak brak uprawnień, błędne dane, konflikt terminu lub brak zasobu.
-  \item \textbf{WN-13. Testowalność.} Kluczowe reguły domenowe, zwłaszcza dostępność i konflikty harmonogramu, powinny być możliwe do testowania automatycznego.
-  \item \textbf{WN-14. Skalowalność.} System powinien umożliwiać obsługę wielu szkół, instruktorów i kursantów bez zmiany podstawowego modelu danych.
-  \item \textbf{WN-15. Zgodność czasowa.} Operacje harmonogramu powinny być interpretowane w lokalnym czasie Polski, zgodnie z założeniem Europe/Warsaw.
-\end{enumerate}
+System powinien zapewniać spójność danych domenowych. Lekcja powinna być powiązana z właściwym kursem, kurs z odpowiednim ośrodkiem i typem kursu, a pojazdy oraz instruktorzy z właściwą szkołą. Dane przekazywane do API powinny być walidowane po stronie backendu niezależnie od walidacji formularzy w interfejsie użytkownika. Szczególne znaczenie ma zapobieganie podwójnym rezerwacjom, dlatego system powinien wykrywać konflikty terminów dla instruktorów i pojazdów oraz blokować operacje, które naruszałyby harmonogram.
+
+Wymaganiem jakościowym jest także utrzymywalność architektury. Backend powinien zachowywać przejrzysty podział na trasy, kontrolery, serwisy, schematy walidacji oraz warstwę dostępu do danych. Frontend powinien być modularny i dzielić logikę na strony, komponenty, kompozycje, typy oraz warstwę pośredniczącą w komunikacji z backendem. Taki podział ułatwia rozwój aplikacji, testowanie oraz wprowadzanie zmian bez naruszania pozostałych części systemu.
+
+Interfejs użytkownika powinien być responsywny i czytelny. Aplikacja powinna być używalna zarówno na typowych ekranach komputerów, jak i urządzeń mobilnych. Dane powinny być prezentowane w sposób zrozumiały dla pracownika biura, instruktora oraz kursanta. System powinien również zwracać jednoznaczne komunikaty błędów w sytuacjach takich jak brak uprawnień, błędne dane wejściowe, konflikt terminu lub brak wymaganego zasobu.
+
+System powinien być projektowany z myślą o testowalności i skalowalności. Kluczowe reguły domenowe, zwłaszcza dotyczące dostępności instruktorów i konfliktów harmonogramu, powinny być możliwe do testowania automatycznego. Model danych powinien pozwalać na obsługę wielu szkół, instruktorów i kursantów bez konieczności zmiany podstawowej struktury systemu. Operacje harmonogramu powinny być interpretowane w lokalnym czasie Polski, zgodnie z założeniem strefy Europe/Warsaw.

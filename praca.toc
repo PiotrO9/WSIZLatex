@@ -14,18 +14,25 @@
 \contentsline {chapter}{\numberline {2}Opis biznesowy systemu}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Wymagania funkcjonalne}{5}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Wymagania niefunkcjonalne}{6}{section.2.2}%
-\contentsline {chapter}{\numberline {3}Modelowanie systemu}{8}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Diagram przypadków użycia}{8}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Scenariusze przypadków użycia}{9}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Scenariusz PU-01: Zaplanowanie lekcji praktycznej}{9}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Scenariusz PU-02: Ocena zakończonej lekcji}{10}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Diagramy aktywności}{11}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Diagram aktywności: zaplanowanie lekcji praktycznej}{11}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Diagram aktywności: ocena zakończonej lekcji}{12}{subsection.3.3.2}%
-\contentsline {chapter}{Spis rysunków}{14}{figure.caption.4}%
-\contentsline {chapter}{Spis tabel}{15}{figure.caption.4}%
-\contentsline {chapter}{Spis listingów}{16}{figure.caption.4}%
+\contentsline {chapter}{\numberline {3}Modelowanie systemu}{7}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Diagram przypadków użycia}{7}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Diagram klas}{7}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Scenariusze przypadków użycia}{8}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Scenariusz PU-01: Zaplanowanie lekcji praktycznej}{8}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Scenariusz PU-02: Ocena zakończonej lekcji}{9}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Diagramy aktywności}{10}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Diagram aktywności: zaplanowanie lekcji praktycznej}{11}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Diagram aktywności: ocena zakończonej lekcji}{12}{subsection.3.4.2}%
+\contentsline {section}{\numberline {3.5}Diagramy sekwencji}{13}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Diagram sekwencji: zaplanowanie lekcji praktycznej}{13}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Diagram sekwencji: ocena zakończonej lekcji}{13}{subsection.3.5.2}%
+\contentsline {section}{\numberline {3.6}Diagramy stanów}{14}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Diagram stanów: kurs}{14}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Diagram stanów: lekcja}{15}{subsection.3.6.2}%
+\contentsline {chapter}{Spis rysunków}{16}{figure.caption.9}%
+\contentsline {chapter}{Spis tabel}{17}{figure.caption.9}%
+\contentsline {chapter}{Spis listingów}{18}{figure.caption.9}%
 \babel@toc {polish}{}\relax 
-\contentsline {chapter}{Bibliografia}{17}{chapter*.5}%
+\contentsline {chapter}{Bibliografia}{19}{chapter*.10}%
 \babel@toc {polish}{}\relax 
 \babel@toc {english}{}\relax 
