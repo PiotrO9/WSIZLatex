@@ -1,0 +1,31 @@
+\babel@toc {polish}{}\relax 
+\contentsline {chapter}{\numberline {1}Analiza problemu i przegląd istniejących rozwiązań}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Charakterystyka problemu}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Skutki braku centralnego systemu}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Cel projektowanego systemu}{3}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Przegląd istniejących rozwiązań}{3}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}CarDriveManager}{3}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Portal OSK}{3}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}OSKAdmin}{3}{subsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.4.4}eOSK}{4}{subsection.1.4.4}%
+\contentsline {section}{\numberline {1.5}Porównanie rozwiązań}{4}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Wnioski z analizy}{4}{section.1.6}%
+\babel@toc {polish}{}\relax 
+\contentsline {chapter}{\numberline {2}Opis biznesowy systemu}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Wymagania funkcjonalne}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Wymagania niefunkcjonalne}{6}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Modelowanie systemu}{8}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Diagram przypadków użycia}{8}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Scenariusze przypadków użycia}{9}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Scenariusz PU-01: Zaplanowanie lekcji praktycznej}{9}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Scenariusz PU-02: Ocena zakończonej lekcji}{10}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Diagramy aktywności}{11}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Diagram aktywności: zaplanowanie lekcji praktycznej}{11}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Diagram aktywności: ocena zakończonej lekcji}{12}{subsection.3.3.2}%
+\contentsline {chapter}{Spis rysunków}{14}{figure.caption.4}%
+\contentsline {chapter}{Spis tabel}{15}{figure.caption.4}%
+\contentsline {chapter}{Spis listingów}{16}{figure.caption.4}%
+\babel@toc {polish}{}\relax 
+\contentsline {chapter}{Bibliografia}{17}{chapter*.5}%
+\babel@toc {polish}{}\relax 
+\babel@toc {english}{}\relax 

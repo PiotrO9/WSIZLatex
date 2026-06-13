@@ -1,0 +1,94 @@
+\chapter{Analiza problemu i przegląd istniejących rozwiązań}
+\label{cha:analizaProblemu}
+
+Niniejszy rozdział przedstawia problem, który rozwiązuje projektowany system OSK-Manager, oraz omawia wybrane istniejące rozwiązania przeznaczone dla ośrodków szkolenia kierowców. Analiza stanowi podstawę do określenia wymagań funkcjonalnych i niefunkcjonalnych systemu.
+
+\section{Charakterystyka problemu}
+\label{sec:charakterystykaProblemu}
+
+Ośrodek szkolenia kierowców prowadzi równolegle wiele procesów organizacyjnych. Musi obsługiwać kursantów, instruktorów, pojazdy, kursy, lekcje teoretyczne i praktyczne, dostępność instruktorów, płatności, dokumentację oraz harmonogram jazd. Każdy z tych obszarów jest ze sobą powiązany. Przykładowo zaplanowanie jazdy praktycznej wymaga jednoczesnego sprawdzenia kursu kursanta, dostępności instruktora, dostępności pojazdu, rodzaju zajęć i przynależności wszystkich elementów do tej samej szkoły.
+
+W praktyce wiele szkół jazdy korzysta z rozproszonych narzędzi: arkuszy kalkulacyjnych, papierowych kart, komunikatorów, zwykłego kalendarza oraz ręcznych notatek. Takie podejście jest wystarczające przy małej liczbie kursantów, ale wraz ze wzrostem liczby instruktorów, pojazdów i kursów zwiększa ryzyko błędów. Najpoważniejsze problemy to podwójne rezerwacje instruktora lub pojazdu, brak aktualnej informacji o dostępności, trudność w monitorowaniu postępów kursanta oraz brak jednego miejsca, w którym manager widzi stan szkoły.
+
+Projekt OSK-Manager dotyczy systemu webowego wspierającego zarządzanie szkołą jazdy. Z analizy projektu wynika, że system obejmuje role użytkowników, ośrodki szkolenia kierowców, kursantów, instruktorów, pojazdy, kursy, lekcje, wydarzenia instruktorskie, dostępność, harmonogram, płatności i oceny. System ma zatem porządkować codzienną pracę OSK oraz wymuszać najważniejsze reguły biznesowe, takie jak brak kolizji terminów, spójność szkoły oraz przypisanie lekcji do konkretnego kursu.
+
+\section{Skutki braku centralnego systemu}
+\label{sec:skutkiBrakuSystemu}
+
+Brak jednego systemu zarządzania powoduje problemy operacyjne i jakościowe. Manager może mieć trudność z szybkim ustaleniem, który instruktor jest dostępny, który pojazd może zostać użyty do jazdy oraz ilu kursantów znajduje się na konkretnym etapie szkolenia. Instruktor może nie mieć aktualnego widoku swoich zajęć, a kursant może nie wiedzieć, ile lekcji już odbył i jakie zajęcia są przed nim.
+
+Szczególnie istotny jest problem planowania jazd praktycznych. Lekcja praktyczna wymaga jednoczesnej dostępności instruktora i pojazdu. Jeżeli harmonogram prowadzony jest ręcznie, łatwo doprowadzić do konfliktu terminów lub zaplanowania lekcji poza godzinami pracy instruktora. Dodatkowo pojazdy wymagają monitorowania statusu, terminów przeglądów, ubezpieczenia i dostępności.
+
+Drugim problemem jest kontrola poprawności danych. Kursant może uczestniczyć w wielu kursach, ale każda lekcja musi należeć do konkretnego kursu. Instruktor i pojazd powinni być powiązani z tą samą szkołą, której dotyczy kurs. Takie reguły trudno egzekwować w arkuszu kalkulacyjnym, natomiast system informatyczny może sprawdzać je automatycznie.
+
+\section{Cel projektowanego systemu}
+\label{sec:celProjektowanegoSystemu}
+
+Celem OSK-Manager jest dostarczenie aplikacji wspierającej codzienne zarządzanie ośrodkiem szkolenia kierowców. System powinien umożliwiać prowadzenie bazy kursantów, instruktorów, pojazdów i kursów, a także planowanie zajęć w sposób ograniczający ryzyko konfliktów.
+
+System powinien wspierać trzy główne grupy użytkowników. Manager szkoły powinien zarządzać ośrodkami, personelem, kursami, pojazdami i harmonogramem. Instruktor powinien mieć dostęp do swoich zajęć oraz dostępności. Kursant powinien widzieć swoje kursy i lekcje. Dodatkowo administrator powinien mieć możliwość nadzoru nad danymi systemowymi i konfiguracją.
+
+\section{Przegląd istniejących rozwiązań}
+\label{sec:przegladRozwiazan}
+
+Na rynku dostępne są systemy przeznaczone dla ośrodków szkolenia kierowców. Do porównania wybrano rozwiązania, które pokazują typowe funkcje oczekiwane w tej domenie: zarządzanie kursantami, instruktorami, pojazdami, harmonogramem, płatnościami i dokumentacją.
+
+\subsection{CarDriveManager}
+\label{subsec:carDriveManager}
+
+CarDriveManager jest systemem CRM i kalendarzem dla szkół jazdy. Według materiałów producenta umożliwia zarządzanie grafikiem jazd, kursantami i płatnościami, a także obsługę bloków lekcyjnych oraz rozliczeń online\footnote{\url{https://cardrivemanager.com/start/}}. Rozwiązanie akcentuje automatyzację pracy biura oraz dostęp do informacji o kursantach i płatnościach w jednym miejscu.
+
+Mocną stroną tego typu systemu jest kompleksowość. Obejmuje on wiele obszarów działalności OSK, od harmonogramu po płatności. Z perspektywy projektu OSK-Manager istotne jest podobne połączenie modułów operacyjnych, lecz z naciskiem na przejrzysty model ról, relacje pomiędzy szkołami, instruktorami i kursantami oraz automatyczne sprawdzanie reguł domenowych.
+
+\subsection{Portal OSK}
+\label{subsec:portalOsk}
+
+Portal OSK to program do prowadzenia ośrodka szkolenia kierowców, który według opisu pozwala szybko wyszukiwać informacje o kursantach, pracownikach i pojazdach oraz wspiera prowadzenie OSK w sposób zgodny z wymaganiami organizacyjnymi\footnote{\url{https://www.portalosk.pl/}}. Rozwiązanie koncentruje się na centralizacji informacji potrzebnych w biurze szkoły jazdy.
+
+Zaletą takiego systemu jest uporządkowanie danych administracyjnych. W porównaniu z OSK-Managerem można wskazać podobny cel: odejście od rozproszonych dokumentów i przeniesienie kluczowych danych do jednego systemu. OSK-Manager dodatkowo kładzie nacisk na dynamiczne wyliczanie dostępności instruktora na podstawie grafiku, wyjątków, blokad, urlopów i istniejących lekcji.
+
+\subsection{OSKAdmin}
+\label{subsec:oskAdmin}
+
+OSKAdmin jest aplikacją do zarządzania szkołą jazdy. Producent wskazuje panel administracyjny dla biura i właściciela, obejmujący zarządzanie kursantami, instruktorami, pojazdami oraz kalendarzem zajęć\footnote{\url{https://oskadmin.pl/}}. System ma wspierać codzienne operacje szkoły i ograniczać ręczną pracę administracyjną.
+
+OSKAdmin pokazuje, że kalendarz i zarządzanie personelem są kluczowymi elementami systemu dla OSK. W OSK-Managerze podobne wymaganie realizowane jest przez moduły harmonogramu, wydarzeń instruktorskich, dostępności oraz pojazdów. Ważne jest także rozróżnienie ról użytkowników, ponieważ inne operacje wykonuje manager, inne instruktor, a inne kursant.
+
+\subsection{eOSK}
+\label{subsec:eosk}
+
+eOSK, oferowany przez Grupę IMAGE, opisuje moduły kursantów, instruktorów, pojazdów, finansów i zgłoszeń urzędowych\footnote{\url{https://www.grupaimage.eu/p696/eosk-program-do-zarzadzania-osk.html}}. Wśród funkcji wymieniane są między innymi zarządzanie szkoleniami, grafikami instruktorów, flotą pojazdów oraz przypomnieniami o terminach ważności przeglądów i ubezpieczeń.
+
+To rozwiązanie pokazuje szeroki zakres potrzeb OSK. Dla OSK-Managera istotne są zwłaszcza moduły kursów, instruktorów i pojazdów. Projektowany system powinien zapewniać podstawę do dalszej rozbudowy o finanse, raportowanie i dokumentację, ale już na poziomie MVP musi poprawnie modelować relacje pomiędzy kursantem, kursem, lekcją, instruktorem i pojazdem.
+
+\section{Porównanie rozwiązań}
+\label{sec:porownanieRozwiazan}
+
+\begin{table}[H]
+  \centering
+  \scriptsize
+  \caption{Porównanie OSK-Manager z wybranymi rozwiązaniami}
+  \label{tab:porownanieRozwiazanOsk}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+    \toprule
+    \textbf{Kryterium} & \textbf{CarDrive Manager} & \textbf{Portal OSK} & \textbf{OSKAdmin / eOSK} & \textbf{OSK-Manager} \\
+    \midrule
+    Kursanci i kursy & Obsługa kursantów i postępów & Baza kursantów i informacji OSK & Moduły kursantów i szkoleń & Kursanci, kursy, typy kursów, status uczestnictwa i PKK \\
+    \midrule
+    Instruktorzy & Grafik instruktorów & Dane pracowników & Grafiki i dostępność instruktorów & Instruktorzy, kwalifikacje, przypisania do OSK i dostępność \\
+    \midrule
+    Pojazdy & Uwzględnienie pojazdów w grafiku & Informacje o pojazdach & Flota, przeglądy i ubezpieczenia & Pojazdy przypisane do OSK, status, zdjęcia i wykorzystanie w jazdach \\
+    \midrule
+    Harmonogram & Kalendarz jazd i bloków lekcyjnych & Organizacja pracy ośrodka & Kalendarz zajęć i grafiki & Harmonogram wyliczany z lekcji, wydarzeń i dostępności \\
+    \midrule
+    Reguły biznesowe & Automatyzacja procesów OSK & Centralizacja danych & Szeroki zakres modułów OSK & Spójność OSK, brak kolizji, lekcje tylko w ramach kursów \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\section{Wnioski z analizy}
+\label{sec:wnioskiAnaliza}
+
+Analiza istniejących rozwiązań pokazuje, że systemy dla OSK skupiają się na kilku powtarzalnych obszarach: kursantach, instruktorach, pojazdach, harmonogramie, płatnościach i dokumentacji. Oznacza to, że projekt OSK-Manager odpowiada na realną potrzebę rynkową, a jego zakres jest zgodny z typowymi wymaganiami szkół jazdy.
+
+Najważniejszym wyróżnikiem projektowanego systemu powinno być poprawne odwzorowanie reguł domenowych. System musi pilnować, aby lekcje należały do kursów, jazdy praktyczne miały przypisany pojazd, instruktorzy i pojazdy nie byli rezerwowani w tym samym czasie oraz aby dane dotyczyły właściwej szkoły. W kolejnych rozdziałach wymagania te zostaną rozwinięte w postaci wymagań funkcjonalnych, niefunkcjonalnych oraz modeli systemu.

@@ -1,0 +1,313 @@
+\chapter{Modelowanie systemu}
+\label{cha:modelowanie-systemu}
+
+\section{Diagram przypadków użycia}
+\label{sec:diagram-przypadkow-uzycia}
+
+Diagram przypadków użycia przedstawia system z perspektywy jego użytkowników. Nie opisuje on szczegółów technicznych, struktury bazy danych ani kolejnych ekranów aplikacji, lecz pokazuje, jakie główne cele mogą realizować poszczególni aktorzy. W przypadku systemu OSK-Manager diagram obejmuje cały system na poziomie biznesowym, ponieważ dokumentowana aplikacja jest spójnym narzędziem do zarządzania ośrodkiem szkolenia kierowców.
+
+Na diagramie wyróżniono cztery główne role użytkowników: kursanta, instruktora, managera OSK oraz administratora. Kursant korzysta z funkcji związanych z własnym kursem, harmonogramem i oceną zakończonych lekcji. Instruktor zarządza dostępnością oraz prowadzi lekcje przypisane do jego grafiku. Manager OSK odpowiada za część organizacyjną, czyli kursy, kursantów, instruktorów, pojazdy, harmonogram oraz płatności. Administrator zarządza kontami użytkowników i podstawową konfiguracją systemu.
+
+\begin{figure}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    usecase/.style={
+        draw,
+        ellipse,
+        align=center,
+        minimum width=2.25cm,
+        minimum height=0.64cm,
+        fill=white,
+        font=\tiny
+    },
+    assoc/.style={
+        -,
+        line width=0.35pt,
+        draw=gray!65
+    },
+    actorlabel/.style={
+        align=center,
+        font=\tiny
+    }
+]
+
+\newcommand{\umlactor}[3]{%
+    \draw (#1,#2+0.52) circle (0.16);
+    \draw (#1,#2+0.36) -- (#1,#2-0.22);
+    \draw (#1-0.34,#2+0.14) -- (#1,#2+0.20) -- (#1+0.34,#2+0.14);
+    \draw (#1-0.30,#2-0.58) -- (#1,#2-0.22) -- (#1+0.30,#2-0.58);
+    \node[actorlabel] at (#1,#2-0.90) {#3};
+}
+
+\draw[rounded corners] (-4.2,-3.75) rectangle (4.2,3.75);
+\node[font=\bfseries\scriptsize, anchor=north west] at (-4.0,3.55) {OSK-Manager};
+
+\coordinate (kursant) at (-5.7,2.15);
+\coordinate (instruktor) at (-5.7,-1.75);
+\coordinate (manager) at (5.7,2.15);
+\coordinate (admin) at (5.7,-1.75);
+
+\umlactor{-5.7}{2.15}{Kursant}
+\umlactor{-5.7}{-1.75}{Instruktor}
+\umlactor{5.7}{2.15}{Manager OSK}
+\umlactor{5.7}{-1.75}{Administrator}
+
+\node[usecase] (login) at (0,3.0) {Logowanie};
+
+\node[usecase] (studentCourses) at (-2.3,2.15) {Moje kursy};
+\node[usecase] (studentLessons) at (-2.3,1.2) {Moje lekcje};
+\node[usecase] (rating) at (-2.3,0.25) {Ocena lekcji};
+
+\node[usecase] (availability) at (-2.3,-0.8) {Dostępność};
+\node[usecase] (teachLesson) at (-2.3,-1.75) {Prowadzenie\\lekcji};
+\node[usecase] (instructorSchedule) at (-2.3,-2.7) {Grafik};
+
+\node[usecase] (managerCourses) at (1.25,2.25) {Zarządzanie\\kursami};
+\node[usecase] (people) at (1.25,1.3) {Kursanci\\i instruktorzy};
+\node[usecase] (vehicles) at (1.25,0.35) {Pojazdy};
+\node[usecase] (schedule) at (3.15,2.25) {Harmonogram};
+\node[usecase] (payments) at (3.15,1.3) {Płatności};
+\node[usecase] (school) at (3.15,0.35) {Ośrodek OSK};
+
+\node[usecase] (users) at (1.25,-1.55) {Użytkownicy};
+\node[usecase] (config) at (3.15,-1.55) {Konfiguracja};
+
+\foreach \uc in {login,studentCourses,studentLessons,rating} {
+    \draw[assoc] (kursant) -- (\uc.west);
+}
+\foreach \uc in {login,availability,teachLesson,instructorSchedule} {
+    \draw[assoc] (instruktor) -- (\uc.west);
+}
+\foreach \uc in {login,managerCourses,people,vehicles,schedule,payments,school} {
+    \draw[assoc] (manager) -- (\uc.east);
+}
+\foreach \uc in {login,users,config} {
+    \draw[assoc] (admin) -- (\uc.east);
+}
+
+\end{tikzpicture}
+}
+\caption{Diagram przypadków użycia systemu OSK-Manager}
+\label{fig:dpu-osk-manager}
+\wsizsource{Opracowanie własne}
+\end{figure}
+
+Przedstawiony diagram celowo pomija szczegóły implementacyjne, takie jak konkretne endpointy API, formularze lub komponenty interfejsu. Takie elementy nie są celem diagramu przypadków użycia. W dokumentacji pełnią one rolę materiału pomocniczego dla dalszych części, przede wszystkim scenariuszy przypadków użycia oraz diagramów aktywności i sekwencji.
+
+\section{Scenariusze przypadków użycia}
+\label{sec:scenariusze-przypadkow-uzycia}
+
+Poniżej przedstawiono dwa scenariusze przypadków użycia opisujące kluczowe procesy systemu OSK-Manager. Pierwszy dotyczy pracy managera OSK przy planowaniu lekcji praktycznej, natomiast drugi opisuje działanie kursanta po zakończeniu lekcji.
+
+\subsection{Scenariusz PU-01: Zaplanowanie lekcji praktycznej}
+\label{subsec:pu-planowanie-lekcji-praktycznej}
+
+\noindent\textbf{Aktor główny:} Manager OSK.
+
+\noindent\textbf{Cel:} Utworzenie lekcji praktycznej dla kursanta z przypisanym instruktorem, pojazdem oraz terminem.
+
+\noindent\textbf{Warunki początkowe:}
+\begin{itemize}
+    \item Manager OSK jest zalogowany w systemie.
+    \item W systemie istnieje aktywny kursant przypisany do wybranego kursu.
+    \item W systemie istnieje instruktor oraz pojazd należący do tego samego ośrodka OSK.
+    \item Instruktor ma zdefiniowaną dostępność w harmonogramie.
+\end{itemize}
+
+\noindent\textbf{Scenariusz główny:}
+\begin{enumerate}
+    \item Manager OSK otwiera moduł harmonogramu.
+    \item System wyświetla kalendarz zajęć oraz dostępne terminy.
+    \item Manager wybiera kursanta i kurs, dla którego ma zostać zaplanowana lekcja.
+    \item Manager wybiera typ lekcji jako jazdę praktyczną.
+    \item System prezentuje dostępnych instruktorów oraz pojazdy powiązane z danym OSK.
+    \item Manager wybiera instruktora, pojazd, datę oraz godzinę rozpoczęcia lekcji.
+    \item System sprawdza, czy instruktor i pojazd są dostępni w wybranym terminie.
+    \item System sprawdza, czy lekcja należy do właściwego kursu oraz tego samego ośrodka OSK.
+    \item Manager zatwierdza utworzenie lekcji.
+    \item System zapisuje lekcję i aktualizuje harmonogram.
+\end{enumerate}
+
+\noindent\textbf{Scenariusze alternatywne:}
+\begin{itemize}
+    \item Jeżeli instruktor jest niedostępny, system blokuje zapis i informuje managera o konflikcie terminu.
+    \item Jeżeli pojazd jest już przypisany do innej lekcji w tym samym czasie, system blokuje zapis i wymaga wyboru innego pojazdu lub terminu.
+    \item Jeżeli wybrany kursant, instruktor lub pojazd nie należy do tego samego OSK, system odrzuca operację.
+\end{itemize}
+
+\noindent\textbf{Warunki końcowe:}
+\begin{itemize}
+    \item Lekcja praktyczna zostaje zapisana w systemie.
+    \item Harmonogram kursanta i instruktora zostaje zaktualizowany.
+    \item Wybrany pojazd jest oznaczony jako zajęty w czasie trwania lekcji.
+\end{itemize}
+
+\subsection{Scenariusz PU-02: Ocena zakończonej lekcji}
+\label{subsec:pu-ocena-zakonczonej-lekcji}
+
+\noindent\textbf{Aktor główny:} Kursant.
+
+\noindent\textbf{Cel:} Wystawienie oceny zakończonej lekcji praktycznej.
+
+\noindent\textbf{Warunki początkowe:}
+\begin{itemize}
+    \item Kursant jest zalogowany w systemie.
+    \item Kursant ma przypisaną lekcję praktyczną.
+    \item Lekcja ma status zakończony.
+    \item Lekcja nie została wcześniej oceniona przez kursanta.
+\end{itemize}
+
+\noindent\textbf{Scenariusz główny:}
+\begin{enumerate}
+    \item Kursant otwiera widok swoich lekcji.
+    \item System wyświetla listę lekcji przypisanych do kursanta.
+    \item Kursant wybiera zakończoną lekcję praktyczną.
+    \item System wyświetla szczegóły lekcji oraz formularz oceny.
+    \item Kursant wybiera ocenę i opcjonalnie wpisuje komentarz.
+    \item Kursant zatwierdza formularz.
+    \item System sprawdza, czy lekcja jest zakończoną lekcją praktyczną i czy nie posiada jeszcze oceny.
+    \item System zapisuje ocenę lekcji.
+    \item System wyświetla potwierdzenie zapisania oceny.
+\end{enumerate}
+
+\noindent\textbf{Scenariusze alternatywne:}
+\begin{itemize}
+    \item Jeżeli lekcja nie jest zakończona, system nie pozwala wystawić oceny.
+    \item Jeżeli lekcja jest lekcją teoretyczną, system nie udostępnia formularza oceny.
+    \item Jeżeli lekcja została już oceniona, system pokazuje istniejącą ocenę i blokuje ponowne wystawienie oceny.
+    \item Jeżeli kursant próbuje ocenić lekcję innego kursanta, system odmawia dostępu.
+\end{itemize}
+
+\noindent\textbf{Warunki końcowe:}
+\begin{itemize}
+    \item Ocena lekcji zostaje zapisana w systemie.
+    \item Kursant może zobaczyć zapisaną ocenę w szczegółach lekcji.
+    \item Instruktor i manager OSK mogą wykorzystać ocenę jako informację zwrotną dotyczącą jakości szkolenia.
+\end{itemize}
+
+\section{Diagramy aktywności}
+\label{sec:diagramy-aktywnosci}
+
+Diagramy aktywności przedstawiają kolejność działań wykonywanych przez użytkowników oraz system w ramach wybranych procesów biznesowych. W dokumentacji systemu OSK-Manager przygotowano dwa diagramy odpowiadające scenariuszom przypadków użycia: zaplanowaniu lekcji praktycznej oraz ocenie zakończonej lekcji.
+
+\subsection{Diagram aktywności: zaplanowanie lekcji praktycznej}
+\label{subsec:diagram-aktywnosci-planowanie-lekcji}
+
+Pierwszy diagram przedstawia proces tworzenia lekcji praktycznej przez managera OSK. Szczególną uwagę zwrócono na kontrolę dostępności instruktora i pojazdu, ponieważ są to warunki konieczne do poprawnego zapisania zajęć w harmonogramie.
+
+\begin{figure}[H]
+\centering
+\resizebox{0.88\textwidth}{!}{%
+\begin{tikzpicture}[
+    action/.style={draw=orange!55!black, fill=orange!16, rounded corners=5pt, align=center, minimum width=3.55cm, minimum height=0.78cm, font=\scriptsize},
+    decision/.style={draw=green!45!black, fill=green!18, diamond, aspect=2.05, align=center, inner sep=1.2pt, font=\scriptsize},
+    startstop/.style={circle, draw=brown!60!black, fill=brown!55, minimum size=0.22cm, inner sep=0pt},
+    endstop/.style={circle, draw=green!45!black, fill=green!28, minimum size=0.34cm, inner sep=0pt},
+    flow/.style={-{Latex[length=2mm]}, draw=blue!45!black, line width=0.45pt, rounded corners=3pt},
+    lane/.style={draw=brown!45!black, line width=0.6pt},
+    header/.style={font=\bfseries\scriptsize},
+    note/.style={font=\tiny, fill=white, inner sep=1pt}
+]
+    \draw[lane] (-6.1,0.55) rectangle (0,-15.15);
+    \draw[lane] (0,0.55) rectangle (6.1,-15.15);
+    \draw[lane] (-6.1,-0.25) -- (6.1,-0.25);
+    \node[header] at (-3.05,0.15) {Manager OSK};
+    \node[header] at (3.05,0.15) {System OSK-Manager};
+
+    \node[startstop] (start) at (-3.05,-0.9) {};
+    \node[action] (openSchedule) at (-3.05,-1.75) {Otwarcie\\harmonogramu};
+    \node[action] (chooseStudent) at (-3.05,-3.0) {Wybór kursanta\\oraz kursu};
+    \node[action] (chooseType) at (-3.05,-4.25) {Wybór typu lekcji:\\jazda praktyczna};
+    \node[action] (chooseResources) at (-3.05,-5.5) {Wybór instruktora,\\pojazdu i terminu};
+    \node[decision] (available) at (3.05,-6.7) {Czy instruktor\\i pojazd są\\dostępni?};
+    \node[action] (conflict) at (3.05,-8.15) {Pokazanie\\konfliktu terminu};
+    \node[action] (validate) at (3.05,-9.55) {Sprawdzenie zgodności\\danych z kursem i OSK};
+    \node[decision] (valid) at (3.05,-10.95) {Czy dane są\\poprawne?};
+    \node[action] (error) at (-3.05,-10.95) {Korekta wybranych\\danych lekcji};
+    \node[action] (save) at (3.05,-12.35) {Zapisanie\\lekcji};
+    \node[action] (update) at (3.05,-13.55) {Aktualizacja\\harmonogramu};
+    \node[endstop] (end) at (3.05,-14.45) {};
+
+    \draw[flow] (start) -- (openSchedule);
+    \draw[flow] (openSchedule) -- (chooseStudent);
+    \draw[flow] (chooseStudent) -- (chooseType);
+    \draw[flow] (chooseType) -- (chooseResources);
+    \draw[flow] (chooseResources.east) -- ++(0.65,0) |- (available.west);
+    \draw[flow] (available) -- node[note, right] {nie} (conflict);
+    \draw[flow] (conflict.east) -- ++(0.8,0) |- (chooseResources.east);
+    \draw[flow] (available) -- node[note, right] {tak} (validate);
+    \draw[flow] (validate) -- (valid);
+    \draw[flow] (valid) -- node[note, above] {nie} (error);
+    \draw[flow] (error.west) -- ++(-0.8,0) |- (chooseStudent.west);
+    \draw[flow] (valid) -- node[note, right] {tak} (save);
+    \draw[flow] (save) -- (update);
+    \draw[flow] (update) -- (end);
+\end{tikzpicture}
+}
+\caption{Diagram aktywności procesu planowania lekcji praktycznej}
+\label{fig:diagram-aktywnosci-planowanie-lekcji}
+\wsizsource{Opracowanie własne}
+\end{figure}
+
+\subsection{Diagram aktywności: ocena zakończonej lekcji}
+\label{subsec:diagram-aktywnosci-ocena-lekcji}
+
+Drugi diagram przedstawia proces wystawienia oceny lekcji przez kursanta. Proces obejmuje sprawdzenie, czy lekcja została zakończona, czy jest lekcją praktyczną oraz czy nie została wcześniej oceniona.
+
+\begin{figure}[H]
+\centering
+\resizebox{0.88\textwidth}{!}{%
+\begin{tikzpicture}[
+    action/.style={draw=orange!55!black, fill=orange!16, rounded corners=5pt, align=center, minimum width=3.55cm, minimum height=0.78cm, font=\scriptsize},
+    decision/.style={draw=green!45!black, fill=green!18, diamond, aspect=2.05, align=center, inner sep=1.2pt, font=\scriptsize},
+    startstop/.style={circle, draw=brown!60!black, fill=brown!55, minimum size=0.22cm, inner sep=0pt},
+    endstop/.style={circle, draw=green!45!black, fill=green!28, minimum size=0.34cm, inner sep=0pt},
+    flow/.style={-{Latex[length=2mm]}, draw=blue!45!black, line width=0.45pt, rounded corners=3pt},
+    lane/.style={draw=brown!45!black, line width=0.6pt},
+    header/.style={font=\bfseries\scriptsize},
+    note/.style={font=\tiny, fill=white, inner sep=1pt}
+]
+    \draw[lane] (-6.1,0.55) rectangle (0,-16.55);
+    \draw[lane] (0,0.55) rectangle (6.1,-16.55);
+    \draw[lane] (-6.1,-0.25) -- (6.1,-0.25);
+    \node[header] at (-3.05,0.15) {Kursant};
+    \node[header] at (3.05,0.15) {System OSK-Manager};
+
+    \node[startstop] (start) at (-3.05,-0.9) {};
+    \node[action] (openLessons) at (-3.05,-1.75) {Otwarcie widoku\\swoich lekcji};
+    \node[action] (chooseLesson) at (-3.05,-3.0) {Wybór lekcji\\do oceny};
+    \node[decision] (finished) at (3.05,-4.2) {Czy lekcja jest\\zakończona?};
+    \node[action] (blocked) at (3.05,-5.6) {Zablokowanie\\możliwości oceny};
+    \node[decision] (practice) at (3.05,-7.0) {Czy jest to lekcja\\praktyczna?};
+    \node[action] (noForm) at (3.05,-8.4) {Ukrycie formularza\\oceny};
+    \node[decision] (rated) at (3.05,-9.8) {Czy lekcja ma\\już ocenę?};
+    \node[action] (existing) at (3.05,-11.2) {Pokazanie\\istniejącej oceny};
+    \node[action] (form) at (-3.05,-11.2) {Wyświetlenie\\formularza oceny};
+    \node[action] (fill) at (-3.05,-12.55) {Wybór oceny\\i komentarza};
+    \node[action] (save) at (3.05,-13.85) {Zapisanie\\oceny};
+    \node[action] (confirm) at (3.05,-15.05) {Wyświetlenie\\potwierdzenia};
+    \node[endstop] (end) at (3.05,-15.9) {};
+
+    \draw[flow] (start) -- (openLessons);
+    \draw[flow] (openLessons) -- (chooseLesson);
+    \draw[flow] (chooseLesson.east) -- ++(0.65,0) |- (finished.west);
+    \draw[flow] (finished) -- node[note, right] {nie} (blocked);
+    \draw[flow] (blocked.east) -- ++(1.0,0) |- (end.east);
+    \draw[flow] (finished) -- node[note, right] {tak} (practice);
+    \draw[flow] (practice) -- node[note, right] {nie} (noForm);
+    \draw[flow] (noForm.east) -- ++(0.85,0) |- (end.east);
+    \draw[flow] (practice) -- node[note, right] {tak} (rated);
+    \draw[flow] (rated) -- node[note, right] {tak} (existing);
+    \draw[flow] (existing.east) -- ++(0.7,0) |- (end.east);
+    \draw[flow] (rated) -- node[note, above] {nie} (form);
+    \draw[flow] (form) -- (fill);
+    \draw[flow] (fill.east) -- ++(0.65,0) |- (save.west);
+    \draw[flow] (save) -- (confirm);
+    \draw[flow] (confirm) -- (end);
+\end{tikzpicture}
+}
+\caption{Diagram aktywności procesu oceny zakończonej lekcji}
+\label{fig:diagram-aktywnosci-ocena-lekcji}
+\wsizsource{Opracowanie własne}
+\end{figure}
