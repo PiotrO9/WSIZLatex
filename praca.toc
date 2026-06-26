@@ -16,53 +16,54 @@
 \contentsline {section}{\numberline {2.2}Wymagania niefunkcjonalne}{7}{section.2.2}%
 \contentsline {chapter}{\numberline {3}Modelowanie systemu}{8}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Diagram przypadków użycia}{8}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Diagram klas}{8}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Scenariusze przypadków użycia}{9}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Scenariusz PU-01: Zaplanowanie lekcji praktycznej}{9}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Scenariusz PU-02: Ocena zakończonej lekcji}{10}{subsection.3.3.2}%
-\contentsline {section}{\numberline {3.4}Diagramy aktywności}{11}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Diagram aktywności: zaplanowanie lekcji praktycznej}{12}{subsection.3.4.1}%
+\contentsline {section}{\numberline {3.2}Diagram klas}{9}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Scenariusze przypadków użycia}{11}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Scenariusz PU-01: Zaplanowanie lekcji praktycznej}{11}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Scenariusz PU-02: Ocena zakończonej lekcji}{12}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Diagramy aktywności}{13}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Diagram aktywności: zaplanowanie lekcji praktycznej}{13}{subsection.3.4.1}%
 \contentsline {subsection}{\numberline {3.4.2}Diagram aktywności: ocena zakończonej lekcji}{13}{subsection.3.4.2}%
 \contentsline {section}{\numberline {3.5}Diagramy sekwencji}{14}{section.3.5}%
 \contentsline {subsection}{\numberline {3.5.1}Diagram sekwencji: zaplanowanie lekcji praktycznej}{14}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Diagram sekwencji: ocena zakończonej lekcji}{14}{subsection.3.5.2}%
-\contentsline {section}{\numberline {3.6}Diagramy stanów}{15}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Diagram stanów: kurs}{15}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Diagram stanów: lekcja}{16}{subsection.3.6.2}%
-\contentsline {chapter}{\numberline {4}Technologie i wymagania sprzętowe}{17}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Technologie frontendowe}{17}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Technologie backendowe}{17}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Baza danych i usługi zewnętrzne}{17}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Narzędzia deweloperskie}{18}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Wymagania sprzętowe i środowiskowe}{18}{section.4.5}%
-\contentsline {chapter}{\numberline {5}Struktura systemu}{19}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Ogólna architektura}{19}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Warstwa frontendowa}{19}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Warstwa BFF}{19}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Warstwa backendowa}{20}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Opis bazy danych}{20}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Integralność danych}{21}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Diagram klas}{21}{section.5.7}%
-\contentsline {chapter}{\numberline {6}Projekt GUI}{22}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Założenia interfejsu}{22}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Widok logowania}{22}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Dashboard}{22}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Panel managera}{22}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Widoki kursanta}{23}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Widoki instruktora}{23}{section.6.6}%
-\contentsline {section}{\numberline {6.7}Wspólne elementy interfejsu}{23}{section.6.7}%
-\contentsline {chapter}{\numberline {7}Propozycja testów}{24}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Testy jednostkowe}{24}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Testy usług backendowych}{24}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Testy API i kontraktu}{25}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Testy warstwy BFF}{25}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Testy manualne GUI}{25}{section.7.5}%
-\contentsline {section}{\numberline {7.6}Testy regresji}{26}{section.7.6}%
-\contentsline {chapter}{\numberline {8}Podsumowanie}{27}{chapter.8}%
-\contentsline {chapter}{Spis rysunków}{28}{chapter.8}%
-\contentsline {chapter}{Spis tabel}{29}{chapter.8}%
-\contentsline {chapter}{Spis listingów}{30}{chapter.8}%
+\contentsline {subsection}{\numberline {3.5.2}Diagram sekwencji: ocena zakończonej lekcji}{15}{subsection.3.5.2}%
+\contentsline {section}{\numberline {3.6}Diagramy stanów}{16}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Diagram stanów: kurs}{17}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Diagram stanów: lekcja}{17}{subsection.3.6.2}%
+\contentsline {chapter}{\numberline {4}Technologie i wymagania sprzętowe}{19}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Technologie frontendowe}{19}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Technologie backendowe}{19}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Baza danych i usługi zewnętrzne}{19}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Narzędzia deweloperskie}{20}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Wymagania sprzętowe i środowiskowe}{20}{section.4.5}%
+\contentsline {chapter}{\numberline {5}Struktura systemu}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Ogólna architektura}{21}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Warstwa frontendowa}{21}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Warstwa BFF}{21}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Warstwa backendowa}{22}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Opis bazy danych}{22}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Diagram ERD}{23}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Integralność danych}{24}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Diagram klas}{25}{section.5.8}%
+\contentsline {chapter}{\numberline {6}Projekt GUI}{26}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Założenia interfejsu}{26}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Widok logowania}{26}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Dashboard}{27}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Panel managera}{27}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Widoki kursanta}{29}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Widoki instruktora}{30}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Wspólne elementy interfejsu}{30}{section.6.7}%
+\contentsline {chapter}{\numberline {7}Propozycja testów}{31}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Testy jednostkowe}{31}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Testy usług backendowych}{31}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Testy API i kontraktu}{32}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Testy warstwy BFF}{32}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Testy manualne GUI}{32}{section.7.5}%
+\contentsline {section}{\numberline {7.6}Testy regresji}{33}{section.7.6}%
+\contentsline {chapter}{\numberline {8}Podsumowanie}{34}{chapter.8}%
+\contentsline {chapter}{Spis rysunków}{35}{chapter.8}%
+\contentsline {chapter}{Spis tabel}{36}{chapter.8}%
+\contentsline {chapter}{Spis listingów}{37}{chapter.8}%
 \babel@toc {polish}{}\relax 
-\contentsline {chapter}{Bibliografia}{31}{chapter*.10}%
+\contentsline {chapter}{Bibliografia}{38}{chapter*.16}%
 \babel@toc {polish}{}\relax 
 \babel@toc {english}{}\relax 

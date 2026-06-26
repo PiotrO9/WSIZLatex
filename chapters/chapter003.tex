@@ -10,73 +10,7 @@ Na diagramie wyróżniono trzy główne role użytkowników: kursanta, instrukto
 
 \begin{figure}[H]
 \centering
-\resizebox{\textwidth}{!}{%
-\begin{tikzpicture}[
-    usecase/.style={
-        draw,
-        ellipse,
-        align=center,
-        minimum width=2.65cm,
-        minimum height=0.72cm,
-        fill=white,
-        font=\scriptsize
-    },
-    assoc/.style={
-        -,
-        line width=0.35pt,
-        draw=gray!65
-    },
-    actorlabel/.style={
-        align=center,
-        font=\scriptsize
-    }
-]
-
-\newcommand{\umlactor}[3]{%
-    \draw (#1,#2+0.52) circle (0.16);
-    \draw (#1,#2+0.36) -- (#1,#2-0.22);
-    \draw (#1-0.34,#2+0.14) -- (#1,#2+0.20) -- (#1+0.34,#2+0.14);
-    \draw (#1-0.30,#2-0.58) -- (#1,#2-0.22) -- (#1+0.30,#2-0.58);
-    \node[actorlabel] at (#1,#2-0.90) {#3};
-}
-
-\draw[rounded corners] (-4.3,-3.25) rectangle (4.3,3.25);
-\node[font=\bfseries\scriptsize, anchor=north west] at (-4.05,3.05) {OSK-Manager};
-
-\coordinate (kursant) at (-5.85,1.95);
-\coordinate (instruktor) at (-5.85,-1.55);
-\coordinate (manager) at (5.85,0.25);
-
-\umlactor{-5.85}{1.95}{Kursant}
-\umlactor{-5.85}{-1.55}{Instruktor}
-\umlactor{5.85}{0.25}{Manager OSK}
-
-\node[usecase] (login) at (0,2.55) {Logowanie};
-
-\node[usecase] (studentCourses) at (-2.3,1.55) {Podgląd kursu};
-\node[usecase] (studentLessons) at (-2.3,0.55) {Podgląd lekcji};
-
-\node[usecase] (availability) at (-2.3,-1.05) {Dostępność};
-\node[usecase] (instructorSchedule) at (-2.3,-2.05) {Grafik instruktora};
-
-\node[usecase] (managerCourses) at (1.65,1.55) {Zarządzanie\\kursami};
-\node[usecase] (people) at (1.65,0.55) {Kursanci\\i instruktorzy};
-\node[usecase] (schedule) at (1.65,-0.45) {Planowanie\\lekcji};
-\node[usecase] (vehicles) at (1.65,-1.45) {Pojazdy};
-\node[usecase] (payments) at (1.65,-2.45) {Płatności};
-
-\foreach \uc in {login,studentCourses,studentLessons} {
-    \draw[assoc] (kursant) -- (\uc.west);
-}
-\foreach \uc in {login,availability,instructorSchedule} {
-    \draw[assoc] (instruktor) -- (\uc.west);
-}
-\foreach \uc in {login,managerCourses,people,schedule,vehicles,payments} {
-    \draw[assoc] (manager) -- (\uc.east);
-}
-
-\end{tikzpicture}
-}
+\includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{figures/generated/dpu.png}
 \caption{Diagram przypadków użycia systemu OSK-Manager}
 \label{fig:dpu-osk-manager}
 \wsizsource{Opracowanie własne}
@@ -91,95 +25,7 @@ Diagram klas przedstawia uproszczony model domenowy systemu OSK-Manager oraz naj
 
 \begin{figure}[H]
 \centering
-\resizebox{0.92\textwidth}{!}{%
-\begin{tikzpicture}[
-    umlclass/.style={
-        draw,
-        rectangle,
-        align=left,
-        text width=3.25cm,
-        minimum height=0.72cm,
-        inner sep=5pt,
-        font=\scriptsize,
-        fill=white
-    },
-    relation/.style={
-        -{Latex[length=1.8mm]},
-        draw=gray!70,
-        line width=0.45pt,
-        rounded corners=3pt
-    },
-    assoclabel/.style={
-        font=\tiny,
-        fill=white,
-        inner sep=1.5pt
-    }
-]
-
-\node[umlclass] (user) at (0,4.8) {
-    \textbf{Użytkownik}\\[-1pt]\rule{\linewidth}{0.2pt}
-    id\\
-    email\\
-    rola\\
-    telefon
-};
-
-\node[umlclass] (school) at (0,2.45) {
-    \textbf{OśrodekSzkolenia}\\[-1pt]\rule{\linewidth}{0.2pt}
-    id\\
-    nazwa\\
-    adres
-};
-
-\node[umlclass] (course) at (-3.8,0.15) {
-    \textbf{Kurs}\\[-1pt]\rule{\linewidth}{0.2pt}
-    id\\
-    status\\
-    dataRozpoczęcia
-};
-
-\node[umlclass] (lesson) at (0,0.15) {
-    \textbf{Lekcja}\\[-1pt]\rule{\linewidth}{0.2pt}
-    id\\
-    typ\\
-    status\\
-    termin
-};
-
-\node[umlclass] (vehicle) at (3.8,0.15) {
-    \textbf{Pojazd}\\[-1pt]\rule{\linewidth}{0.2pt}
-    id\\
-    numerRejestracyjny\\
-    status
-};
-
-\node[umlclass] (availability) at (-1.9,-2.15) {
-    \textbf{DostępnośćInstruktora}\\[-1pt]\rule{\linewidth}{0.2pt}
-    dzień\\
-    godzinaOd\\
-    godzinaDo
-};
-
-\node[umlclass] (payment) at (1.9,-2.15) {
-    \textbf{Płatność}\\[-1pt]\rule{\linewidth}{0.2pt}
-    id\\
-    kwota\\
-    status\\[-1pt]\rule{\linewidth}{0.2pt}
-    zaksięguj()
-};
-
-\draw[relation] (user.south) -- node[assoclabel, right] {manager / instruktor / kursant} (school.north);
-\draw[relation] (school.south west) -- node[assoclabel, above left] {1 prowadzi 0..*} (course.north);
-\draw[relation] (school.south east) -- node[assoclabel, above right] {1 posiada 0..*} (vehicle.north);
-\draw[relation] (course.east) -- node[assoclabel, above] {1 ma 0..*} (lesson.west);
-\draw[relation] (vehicle.west) -- node[assoclabel, above] {0..1 dla jazdy} (lesson.east);
-\draw[relation] (user.south west) -- ++(-2.1,-4.85) node[assoclabel, left] {instruktor definiuje} -- (availability.north);
-\draw[relation] (course.south east) -- node[assoclabel, below] {1 ma 0..*} (payment.north west);
-\draw[relation] (user.west) -- ++(-4.3,0) node[assoclabel, above] {kursant uczestniczy} |- (course.west);
-\draw[relation] (user.east) -- ++(4.3,0) node[assoclabel, above] {instruktor prowadzi} |- (lesson.east);
-
-\end{tikzpicture}
-}
+\includegraphics[width=\textwidth,height=0.76\textheight,keepaspectratio]{figures/generated/class-diagram.png}
 \caption{Diagram klas systemu OSK-Manager}
 \label{fig:diagram-klas-osk-manager}
 \wsizsource{Opracowanie własne}
@@ -290,53 +136,7 @@ Pierwszy diagram przedstawia proces tworzenia lekcji praktycznej przez managera 
 
 \begin{figure}[H]
 \centering
-\resizebox{0.88\textwidth}{!}{%
-\begin{tikzpicture}[
-    action/.style={draw=orange!55!black, fill=orange!16, rounded corners=5pt, align=center, minimum width=3.55cm, minimum height=0.78cm, font=\scriptsize},
-    decision/.style={draw=green!45!black, fill=green!18, diamond, aspect=2.05, align=center, inner sep=1.2pt, font=\scriptsize},
-    startstop/.style={circle, draw=brown!60!black, fill=brown!55, minimum size=0.22cm, inner sep=0pt},
-    endstop/.style={circle, draw=green!45!black, fill=green!28, minimum size=0.34cm, inner sep=0pt},
-    flow/.style={-{Latex[length=2mm]}, draw=blue!45!black, line width=0.45pt, rounded corners=3pt},
-    lane/.style={draw=brown!45!black, line width=0.6pt},
-    header/.style={font=\bfseries\scriptsize},
-    note/.style={font=\tiny, fill=white, inner sep=1pt}
-]
-    \draw[lane] (-6.1,0.55) rectangle (0,-15.15);
-    \draw[lane] (0,0.55) rectangle (6.1,-15.15);
-    \draw[lane] (-6.1,-0.25) -- (6.1,-0.25);
-    \node[header] at (-3.05,0.15) {Manager OSK};
-    \node[header] at (3.05,0.15) {System OSK-Manager};
-
-    \node[startstop] (start) at (-3.05,-0.9) {};
-    \node[action] (openSchedule) at (-3.05,-1.75) {Otwarcie\\harmonogramu};
-    \node[action] (chooseStudent) at (-3.05,-3.0) {Wybór kursanta\\oraz kursu};
-    \node[action] (chooseType) at (-3.05,-4.25) {Wybór typu lekcji:\\jazda praktyczna};
-    \node[action] (chooseResources) at (-3.05,-5.5) {Wybór instruktora,\\pojazdu i terminu};
-    \node[decision] (available) at (3.05,-6.7) {Czy instruktor\\i pojazd są\\dostępni?};
-    \node[action] (conflict) at (3.05,-8.15) {Pokazanie\\konfliktu terminu};
-    \node[action] (validate) at (3.05,-9.55) {Sprawdzenie zgodności\\danych z kursem i OSK};
-    \node[decision] (valid) at (3.05,-10.95) {Czy dane są\\poprawne?};
-    \node[action] (error) at (-3.05,-10.95) {Korekta wybranych\\danych lekcji};
-    \node[action] (save) at (3.05,-12.35) {Zapisanie\\lekcji};
-    \node[action] (update) at (3.05,-13.55) {Aktualizacja\\harmonogramu};
-    \node[endstop] (end) at (3.05,-14.45) {};
-
-    \draw[flow] (start) -- (openSchedule);
-    \draw[flow] (openSchedule) -- (chooseStudent);
-    \draw[flow] (chooseStudent) -- (chooseType);
-    \draw[flow] (chooseType) -- (chooseResources);
-    \draw[flow] (chooseResources.east) -- ++(0.65,0) |- (available.west);
-    \draw[flow] (available) -- node[note, right] {nie} (conflict);
-    \draw[flow] (conflict.east) -- (5.55,-8.15) |- (chooseResources.east);
-    \draw[flow] (available) -- node[note, right] {tak} (validate);
-    \draw[flow] (validate) -- (valid);
-    \draw[flow] (valid) -- node[note, above] {nie} (error);
-    \draw[flow] (error.west) -- (-5.55,-10.95) |- (chooseStudent.west);
-    \draw[flow] (valid) -- node[note, right] {tak} (save);
-    \draw[flow] (save) -- (update);
-    \draw[flow] (update) -- (end);
-\end{tikzpicture}
-}
+\includegraphics[width=\textwidth,height=0.76\textheight,keepaspectratio]{figures/generated/activity-plan-lesson.png}
 \caption{Diagram aktywności procesu planowania lekcji praktycznej}
 \label{fig:diagram-aktywnosci-planowanie-lekcji}
 \wsizsource{Opracowanie własne}
@@ -349,56 +149,7 @@ Drugi diagram przedstawia proces wystawienia oceny lekcji przez kursanta. Proces
 
 \begin{figure}[H]
 \centering
-\resizebox{0.88\textwidth}{!}{%
-\begin{tikzpicture}[
-    action/.style={draw=orange!55!black, fill=orange!16, rounded corners=5pt, align=center, minimum width=3.55cm, minimum height=0.78cm, font=\scriptsize},
-    decision/.style={draw=green!45!black, fill=green!18, diamond, aspect=2.05, align=center, inner sep=1.2pt, font=\scriptsize},
-    startstop/.style={circle, draw=brown!60!black, fill=brown!55, minimum size=0.22cm, inner sep=0pt},
-    endstop/.style={circle, draw=green!45!black, fill=green!28, minimum size=0.34cm, inner sep=0pt},
-    flow/.style={-{Latex[length=2mm]}, draw=blue!45!black, line width=0.45pt, rounded corners=3pt},
-    lane/.style={draw=brown!45!black, line width=0.6pt},
-    header/.style={font=\bfseries\scriptsize},
-    note/.style={font=\tiny, fill=white, inner sep=1pt}
-]
-    \draw[lane] (-6.1,0.55) rectangle (0,-16.55);
-    \draw[lane] (0,0.55) rectangle (6.1,-16.55);
-    \draw[lane] (-6.1,-0.25) -- (6.1,-0.25);
-    \node[header] at (-3.05,0.15) {Kursant};
-    \node[header] at (3.05,0.15) {System OSK-Manager};
-
-    \node[startstop] (start) at (-3.05,-0.9) {};
-    \node[action] (openLessons) at (-3.05,-1.75) {Otwarcie widoku\\swoich lekcji};
-    \node[action] (chooseLesson) at (-3.05,-3.0) {Wybór lekcji\\do oceny};
-    \node[decision] (finished) at (3.05,-4.2) {Czy lekcja jest\\zakończona?};
-    \node[action] (blocked) at (3.05,-5.6) {Zablokowanie\\możliwości oceny};
-    \node[decision] (practice) at (3.05,-7.0) {Czy jest to lekcja\\praktyczna?};
-    \node[action] (noForm) at (3.05,-8.4) {Ukrycie formularza\\oceny};
-    \node[decision] (rated) at (3.05,-9.8) {Czy lekcja ma\\już ocenę?};
-    \node[action] (existing) at (3.05,-11.2) {Pokazanie\\istniejącej oceny};
-    \node[action] (form) at (-3.05,-11.2) {Wyświetlenie\\formularza oceny};
-    \node[action] (fill) at (-3.05,-12.55) {Wybór oceny\\i komentarza};
-    \node[action] (save) at (3.05,-13.85) {Zapisanie\\oceny};
-    \node[action] (confirm) at (3.05,-15.05) {Wyświetlenie\\potwierdzenia};
-    \node[endstop] (end) at (3.05,-15.9) {};
-
-    \draw[flow] (start) -- (openLessons);
-    \draw[flow] (openLessons) -- (chooseLesson);
-    \draw[flow] (chooseLesson.east) -- ++(0.65,0) |- (finished.west);
-    \draw[flow] (finished) -- node[note, right] {nie} (blocked);
-    \draw[flow] (blocked.east) -- (5.55,-5.6) |- (end.east);
-    \draw[flow] (finished) -- node[note, right] {tak} (practice);
-    \draw[flow] (practice) -- node[note, right] {nie} (noForm);
-    \draw[flow] (noForm.east) -- (5.55,-8.4) |- (end.east);
-    \draw[flow] (practice) -- node[note, right] {tak} (rated);
-    \draw[flow] (rated) -- node[note, right] {tak} (existing);
-    \draw[flow] (existing.east) -- (5.55,-11.2) |- (end.east);
-    \draw[flow] (rated) -- node[note, above] {nie} (form);
-    \draw[flow] (form) -- (fill);
-    \draw[flow] (fill.east) -- ++(0.65,0) |- (save.west);
-    \draw[flow] (save) -- (confirm);
-    \draw[flow] (confirm) -- (end);
-\end{tikzpicture}
-}
+\includegraphics[width=\textwidth,height=0.76\textheight,keepaspectratio]{figures/generated/activity-rate-lesson.png}
 \caption{Diagram aktywności procesu oceny zakończonej lekcji}
 \label{fig:diagram-aktywnosci-ocena-lekcji}
 \wsizsource{Opracowanie własne}
@@ -416,37 +167,7 @@ Pierwszy diagram przedstawia komunikację realizowaną podczas tworzenia lekcji 
 
 \begin{figure}[H]
 \centering
-\resizebox{\textwidth}{!}{%
-\begin{tikzpicture}[
-    participant/.style={draw, fill=gray!10, rounded corners=3pt, align=center, minimum width=2.45cm, minimum height=0.72cm, font=\scriptsize},
-    lifeline/.style={draw=gray!55, dashed, line width=0.35pt},
-    msg/.style={-{Latex[length=2mm]}, draw=blue!45!black, line width=0.45pt},
-    ret/.style={-{Latex[length=2mm]}, draw=gray!65, line width=0.4pt, dashed},
-    note/.style={font=\tiny, fill=white, inner sep=1.2pt}
-]
-    \node[participant] (manager) at (-5.7,0) {Manager OSK};
-    \node[participant] (frontend) at (-1.9,0) {Frontend};
-    \node[participant] (backend) at (1.9,0) {Backend};
-    \node[participant] (db) at (5.7,0) {Baza danych};
-
-    \draw[lifeline] (manager.south) -- (-5.7,-9.2);
-    \draw[lifeline] (frontend.south) -- (-1.9,-9.2);
-    \draw[lifeline] (backend.south) -- (1.9,-9.2);
-    \draw[lifeline] (db.south) -- (5.7,-9.2);
-
-    \draw[msg] (-5.7,-1.0) -- node[note, above] {wybiera kurs, instruktora, pojazd i termin} (-1.9,-1.0);
-    \draw[msg] (-1.9,-2.0) -- node[note, above] {POST /lekcje} (1.9,-2.0);
-    \draw[msg] (1.9,-3.0) -- node[note, above] {sprawdź kurs i OSK} (5.7,-3.0);
-    \draw[ret] (5.7,-3.7) -- node[note, above] {dane poprawne} (1.9,-3.7);
-    \draw[msg] (1.9,-4.7) -- node[note, above] {sprawdź dostępność instruktora} (5.7,-4.7);
-    \draw[ret] (5.7,-5.4) -- node[note, above] {brak konfliktu} (1.9,-5.4);
-    \draw[msg] (1.9,-6.4) -- node[note, above] {sprawdź dostępność pojazdu} (5.7,-6.4);
-    \draw[ret] (5.7,-7.1) -- node[note, above] {brak konfliktu} (1.9,-7.1);
-    \draw[msg] (1.9,-8.0) -- node[note, above] {zapisz lekcję} (5.7,-8.0);
-    \draw[ret] (1.9,-8.75) -- node[note, above] {potwierdzenie utworzenia} (-1.9,-8.75);
-    \draw[ret] (-1.9,-9.35) -- node[note, above] {aktualizacja harmonogramu} (-5.7,-9.35);
-\end{tikzpicture}
-}
+\includegraphics[width=\textwidth,height=0.76\textheight,keepaspectratio]{figures/generated/sequence-plan-lesson.png}
 \caption{Diagram sekwencji procesu planowania lekcji praktycznej}
 \label{fig:diagram-sekwencji-planowanie-lekcji}
 \wsizsource{Opracowanie własne}
@@ -459,38 +180,7 @@ Drugi diagram przedstawia komunikację podczas wystawiania oceny zakończonej le
 
 \begin{figure}[H]
 \centering
-\resizebox{\textwidth}{!}{%
-\begin{tikzpicture}[
-    participant/.style={draw, fill=gray!10, rounded corners=3pt, align=center, minimum width=2.45cm, minimum height=0.72cm, font=\scriptsize},
-    lifeline/.style={draw=gray!55, dashed, line width=0.35pt},
-    msg/.style={-{Latex[length=2mm]}, draw=blue!45!black, line width=0.45pt},
-    ret/.style={-{Latex[length=2mm]}, draw=gray!65, line width=0.4pt, dashed},
-    note/.style={font=\tiny, fill=white, inner sep=1.2pt}
-]
-    \node[participant] (student) at (-5.7,0) {Kursant};
-    \node[participant] (frontend) at (-1.9,0) {Frontend};
-    \node[participant] (backend) at (1.9,0) {Backend};
-    \node[participant] (db) at (5.7,0) {Baza danych};
-
-    \draw[lifeline] (student.south) -- (-5.7,-8.5);
-    \draw[lifeline] (frontend.south) -- (-1.9,-8.5);
-    \draw[lifeline] (backend.south) -- (1.9,-8.5);
-    \draw[lifeline] (db.south) -- (5.7,-8.5);
-
-    \draw[msg] (-5.7,-1.0) -- node[note, above] {wybiera zakończoną lekcję} (-1.9,-1.0);
-    \draw[msg] (-1.9,-1.9) -- node[note, above] {GET /lekcje/\{id\}} (1.9,-1.9);
-    \draw[msg] (1.9,-2.8) -- node[note, above] {pobierz lekcję i ocenę} (5.7,-2.8);
-    \draw[ret] (5.7,-3.5) -- node[note, above] {szczegóły lekcji} (1.9,-3.5);
-    \draw[ret] (1.9,-4.2) -- node[note, above] {formularz oceny} (-1.9,-4.2);
-    \draw[msg] (-5.7,-5.1) -- node[note, above] {wpisuje ocenę i komentarz} (-1.9,-5.1);
-    \draw[msg] (-1.9,-6.0) -- node[note, above] {POST /lekcje/\{id\}/ocena} (1.9,-6.0);
-    \draw[msg] (1.9,-6.9) -- node[note, above] {sprawdź uprawnienia i status lekcji} (5.7,-6.9);
-    \draw[ret] (5.7,-7.6) -- node[note, above] {można wystawić ocenę} (1.9,-7.6);
-    \draw[msg] (1.9,-8.35) -- node[note, above] {zapisz ocenę} (5.7,-8.35);
-    \draw[ret] (1.9,-9.05) -- node[note, above] {potwierdzenie zapisu} (-1.9,-9.05);
-    \draw[ret] (-1.9,-9.65) -- node[note, above] {komunikat sukcesu} (-5.7,-9.65);
-\end{tikzpicture}
-}
+\includegraphics[width=\textwidth,height=0.76\textheight,keepaspectratio]{figures/generated/sequence-rate-lesson.png}
 \caption{Diagram sekwencji procesu oceny zakończonej lekcji}
 \label{fig:diagram-sekwencji-ocena-lekcji}
 \wsizsource{Opracowanie własne}
@@ -508,34 +198,7 @@ Pierwszy diagram przedstawia uproszczony cykl życia kursu. Kurs po utworzeniu j
 
 \begin{figure}[H]
 \centering
-\resizebox{\textwidth}{!}{%
-\begin{tikzpicture}[
-    state/.style={draw=green!45!black, fill=green!12, rounded corners=5pt, align=center, minimum width=2.65cm, minimum height=0.78cm, font=\scriptsize},
-    startstop/.style={circle, draw=brown!60!black, fill=brown!55, minimum size=0.24cm, inner sep=0pt},
-    endstop/.style={circle, draw=green!45!black, fill=green!30, minimum size=0.34cm, inner sep=0pt},
-    flow/.style={-{Latex[length=2mm]}, draw=blue!45!black, line width=0.45pt, rounded corners=4pt},
-    note/.style={font=\tiny, fill=white, inner sep=1.2pt}
-]
-    \node[startstop] (start) at (-6.4,0) {};
-    \node[state] (draft) at (-4.8,0) {Utworzony};
-    \node[state] (ready) at (-1.65,0) {Przygotowany};
-    \node[state] (active) at (1.65,0) {Aktywny};
-    \node[state] (finished) at (4.8,0) {Zakończony};
-    \node[state] (cancelled) at (-1.65,-2.65) {Anulowany};
-    \node[endstop] (endFinished) at (6.45,0) {};
-    \node[endstop] (endCancelled) at (0.1,-2.65) {};
-
-    \draw[flow] (start) -- (draft);
-    \draw[flow] (draft) -- node[note, above] {uzupełnienie danych} (ready);
-    \draw[flow] (ready) -- node[note, above] {rozpoczęcie szkolenia} (active);
-    \draw[flow] (active) -- node[note, above] {realizacja zajęć} (finished);
-    \draw[flow] (finished) -- (endFinished);
-    \draw[flow] (draft.south) -- ++(0,-1.15) -| node[note, near start, left] {rezygnacja} (cancelled.west);
-    \draw[flow] (ready.south) -- node[note, left] {anulowanie} (cancelled.north);
-    \draw[flow] (active.south) -- ++(0,-1.15) -| node[note, near start, right] {przerwanie} (cancelled.east);
-    \draw[flow] (cancelled) -- (endCancelled);
-\end{tikzpicture}
-}
+\includegraphics[width=0.78\textwidth,height=0.66\textheight,keepaspectratio]{figures/generated/state-course.png}
 \caption{Diagram stanów kursu w systemie OSK-Manager}
 \label{fig:diagram-stanow-kurs}
 \wsizsource{Opracowanie własne}
@@ -548,36 +211,7 @@ Drugi diagram przedstawia cykl życia lekcji. Lekcja po zaplanowaniu oczekuje na
 
 \begin{figure}[H]
 \centering
-\resizebox{\textwidth}{!}{%
-\begin{tikzpicture}[
-    state/.style={draw=green!45!black, fill=green!12, rounded corners=5pt, align=center, minimum width=2.65cm, minimum height=0.78cm, font=\scriptsize},
-    startstop/.style={circle, draw=brown!60!black, fill=brown!55, minimum size=0.24cm, inner sep=0pt},
-    endstop/.style={circle, draw=green!45!black, fill=green!30, minimum size=0.34cm, inner sep=0pt},
-    flow/.style={-{Latex[length=2mm]}, draw=blue!45!black, line width=0.45pt, rounded corners=4pt},
-    note/.style={font=\tiny, fill=white, inner sep=1.2pt}
-]
-    \node[startstop] (start) at (-6.4,0) {};
-    \node[state] (planned) at (-4.8,0) {Zaplanowana};
-    \node[state] (inProgress) at (-1.65,0) {W trakcie};
-    \node[state] (done) at (1.65,0) {Zakończona};
-    \node[state] (rated) at (4.8,0) {Oceniona};
-    \node[state] (cancelled) at (-3.2,-2.65) {Anulowana};
-    \node[state] (unrated) at (1.65,-2.65) {Bez oceny};
-    \node[endstop] (endRated) at (6.45,0) {};
-    \node[endstop] (endCancelled) at (-1.45,-2.65) {};
-    \node[endstop] (endUnrated) at (3.4,-2.65) {};
-
-    \draw[flow] (start) -- (planned);
-    \draw[flow] (planned) -- node[note, above] {rozpoczęcie terminu} (inProgress);
-    \draw[flow] (inProgress) -- node[note, above] {zakończenie zajęć} (done);
-    \draw[flow] (done) -- node[note, above] {ocena kursanta} (rated);
-    \draw[flow] (rated) -- (endRated);
-    \draw[flow] (done.south) -- node[note, right] {bez formularza} (unrated.north);
-    \draw[flow] (unrated) -- (endUnrated);
-    \draw[flow] (planned.south) -- ++(0,-1.15) -| node[note, near start, left] {anulowanie terminu} (cancelled.west);
-    \draw[flow] (cancelled) -- (endCancelled);
-\end{tikzpicture}
-}
+\includegraphics[width=0.78\textwidth,height=0.66\textheight,keepaspectratio]{figures/generated/state-lesson.png}
 \caption{Diagram stanów lekcji w systemie OSK-Manager}
 \label{fig:diagram-stanow-lekcja}
 \wsizsource{Opracowanie własne}

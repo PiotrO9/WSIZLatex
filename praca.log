@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.6.12)  26 JUN 2026 14:25
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.6.12)  26 JUN 2026 22:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1421,57 +1421,94 @@ Rozdział 2.
 
  (chapters/chapter003.tex
 Rozdział 3.
+File: figures/generated/dpu.png Graphic file (type bmp)
+<figures/generated/dpu.png>
 [8
 
 
 
 
-] [9] [10] [11] [12] [13] [14] [15]) [16]
+]
+File: figures/generated/class-diagram.png Graphic file (type bmp)
+<figures/generated/class-diagram.png>
+ [9] [10] [11] [12]
+File: figures/generated/activity-plan-lesson.png Graphic file (type bmp)
+<figures/generated/activity-plan-lesson.png>
+File: figures/generated/activity-rate-lesson.png Graphic file (type bmp)
+<figures/generated/activity-rate-lesson.png>
+ [13]
+File: figures/generated/sequence-plan-lesson.png Graphic file (type bmp)
+<figures/generated/sequence-plan-lesson.png>
+ [14]
+File: figures/generated/sequence-rate-lesson.png Graphic file (type bmp)
+<figures/generated/sequence-rate-lesson.png>
+ [15] [16]
+File: figures/generated/state-course.png Graphic file (type bmp)
+<figures/generated/state-course.png>
+File: figures/generated/state-lesson.png Graphic file (type bmp)
+<figures/generated/state-lesson.png>
+) [17] [18]
 \openout2 = `chapters/chapter004.aux'.
 
  (chapters/chapter004.tex
 Rozdział 4.
-[17
-
-
-
-
-]) [18]
-\openout2 = `chapters/chapter005.aux'.
-
- (chapters/chapter005.tex
-Rozdział 5.
 [19
 
 
 
 
-] [20]) [21]
+]) [20]
+\openout2 = `chapters/chapter005.aux'.
+
+ (chapters/chapter005.tex
+Rozdział 5.
+[21
+
+
+
+
+] [22]
+File: figures/generated/erd.png Graphic file (type bmp)
+<figures/generated/erd.png>
+ [23] [24]) [25]
 \openout2 = `chapters/chapter006.aux'.
 
  (chapters/chapter006.tex
 Rozdział 6.
-[22
+File: figures/generated/gui-login.png Graphic file (type bmp)
+<figures/generated/gui-login.png>
+[26
 
 
 
 
-]) [23]
+]
+File: figures/generated/gui-dashboard.png Graphic file (type bmp)
+<figures/generated/gui-dashboard.png>
+ [27]
+File: figures/generated/gui-students-list.png Graphic file (type bmp)
+<figures/generated/gui-students-list.png>
+File: figures/generated/gui-student-details.png Graphic file (type bmp)
+<figures/generated/gui-student-details.png>
+ [28]
+File: figures/generated/gui-schedule.png Graphic file (type bmp)
+<figures/generated/gui-schedule.png>
+ [29]) [30]
 \openout2 = `chapters/chapter007.aux'.
 
  (chapters/chapter007.tex
 Rozdział 7.
-[24
+[31
 
 
 
 
-] [25]) [26]
+] [32]) [33]
 \openout2 = `chapters/chapter008.aux'.
 
  (chapters/chapter008.tex
 Rozdział 8.
-) [27
+) [34
 
 
 
@@ -1480,7 +1517,7 @@ Rozdział 8.
 \tf@lof=\write6
 \openout6 = `praca.lof'.
 
- [28
+ [35
 
 
 
@@ -1488,33 +1525,33 @@ Rozdział 8.
 \tf@lot=\write7
 \openout7 = `praca.lot'.
 
- [29
+ [36
 
 ] (praca.lol)
 \tf@lol=\write8
 \openout8 = `praca.lol'.
 
- [30
+ [37
 
 
 ] (praca.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [31
+) [38
 
 
 ]
 \openout2 = `chapters/abstract-pl.aux'.
 
- (chapters/abstract-pl.tex) [32
+ (chapters/abstract-pl.tex) [39
 
 
 
 ]
 \openout2 = `chapters/abstract-en.aux'.
 
- (chapters/abstract-en.tex) [33
+ (chapters/abstract-en.tex) [40
 
 
 
@@ -1534,15 +1571,15 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `praca.out' has not changed.
-(rerunfilecheck)             Checksum: DC96B4F3971BA9B6257B74086869ED7B;10734.
+(rerunfilecheck)             Checksum: 12E828A78B3622C74FF36FA3A08DF2CA;10847.
  ) 
 Here is how much of TeX's memory you used:
- 38074 strings out of 402987
- 794871 string characters out of 5448938
- 1294824 words of memory out of 5000000
- 66168 multiletter control sequences out of 15000+600000
+ 37496 strings out of 402987
+ 785912 string characters out of 5448938
+ 1260979 words of memory out of 5000000
+ 65574 multiletter control sequences out of 15000+600000
  634955 words of font info for 121 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  88i,12n,107p,1004b,1174s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on praca.xdv (34 pages, 772148 bytes).
+Output written on praca.xdv (41 pages, 622692 bytes).
