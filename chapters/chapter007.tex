@@ -1,0 +1,89 @@
+\chapter{Propozycja testów}
+\label{cha:propozycja-testow}
+
+Testowanie systemu OSK-Manager powinno obejmować zarówno logikę biznesową backendu, jak i poprawność działania interfejsu użytkownika. Szczególne znaczenie mają obszary związane z autoryzacją, planowaniem lekcji, dostępnością instruktorów, dostępnością pojazdów, płatnościami oraz ocenami lekcji.
+
+\section{Testy jednostkowe}
+\label{sec:testy-jednostkowe}
+
+Testy jednostkowe powinny sprawdzać pojedyncze funkcje i reguły domenowe bez konieczności uruchamiania całej aplikacji. W systemie OSK-Manager szczególnie istotne są testy:
+\begin{itemize}
+    \item sprawdzania poprawności identyfikatorów UUID,
+    \item walidacji statusów pojazdów,
+    \item kwalifikacji instruktora do prowadzenia danego typu kursu,
+    \item domyślnych godzin pracy instruktora,
+    \item zasad rejestracji użytkowników i przypisywania ról,
+    \item obsługi błędów integracji z Supabase.
+\end{itemize}
+
+Takie testy ograniczają ryzyko przypadkowej zmiany podstawowych reguł systemu podczas dalszego rozwoju aplikacji.
+
+\section{Testy usług backendowych}
+\label{sec:testy-uslug}
+
+Najważniejsza logika systemu znajduje się w usługach backendowych. Testy tej warstwy powinny obejmować:
+\begin{itemize}
+    \item tworzenie i edycję lekcji,
+    \item anulowanie lekcji,
+    \item rezerwację lekcji przez kursanta,
+    \item sprawdzanie konfliktów harmonogramu,
+    \item obsługę wydarzeń instruktorskich,
+    \item wyliczanie dostępności instruktorów,
+    \item obsługę płatności kursanta,
+    \item zmianę statusu procesu szkolenia,
+    \item wystawianie ocen zakończonych lekcji.
+\end{itemize}
+
+Testy powinny weryfikować zarówno scenariusze poprawne, jak i przypadki błędne. Przykładowo system powinien odrzucić próbę zaplanowania lekcji w terminie, w którym instruktor jest zajęty, pojazd jest niedostępny lub dane należą do innego OSK.
+
+\section{Testy API i kontraktu}
+\label{sec:testy-api}
+
+Backend udostępnia API HTTP, dlatego należy testować poprawność endpointów oraz zgodność dokumentacji OpenAPI z implementacją. Testy kontraktu API powinny sprawdzać, czy najważniejsze ścieżki są opisane, czy odpowiedzi mają oczekiwaną strukturę oraz czy schematy walidacji odpowiadają rzeczywistym danym zwracanym przez backend.
+
+Warto objąć testami następujące obszary API:
+\begin{itemize}
+    \item logowanie, odświeżanie sesji i pobieranie danych użytkownika,
+    \item operacje na kursantach,
+    \item operacje na instruktorach,
+    \item operacje na pojazdach,
+    \item operacje na kursach i typach kursów,
+    \item planowanie i edycję lekcji,
+    \item harmonogram szkoły,
+    \item oceny lekcji.
+\end{itemize}
+
+\section{Testy warstwy BFF}
+\label{sec:testy-bff}
+
+Warstwa BFF po stronie Nuxt wymaga osobnych testów, ponieważ odpowiada za pośredniczenie między frontendem i backendem. Testy powinny sprawdzać wybór adaptera komunikacji, poprawność przekazywania żądań do backendu, obsługę błędów połączenia oraz walidację parametrów żądań.
+
+Szczególnie ważne jest sprawdzenie, czy aplikacja poprawnie zachowuje się w przypadku braku konfiguracji backendu, błędnego adresu API lub niedostępnego upstreamu. Użytkownik powinien otrzymać czytelny komunikat błędu zamiast technicznego wyjątku.
+
+\section{Testy manualne GUI}
+\label{sec:testy-manualne-gui}
+
+Testy manualne powinny obejmować pełne scenariusze wykonywane z perspektywy użytkownika. Proponowane przypadki testowe to:
+\begin{enumerate}
+    \item Zalogowanie się do systemu poprawnymi danymi.
+    \item Próba logowania z błędnym hasłem.
+    \item Utworzenie nowego kursanta przez managera.
+    \item Przypisanie kursanta do kursu.
+    \item Dodanie instruktora i ustawienie jego dostępności.
+    \item Dodanie pojazdu i zmiana jego statusu dostępności.
+    \item Zaplanowanie lekcji praktycznej z instruktorem i pojazdem.
+    \item Próba zaplanowania lekcji w terminie powodującym konflikt.
+    \item Anulowanie lekcji.
+    \item Wystawienie oceny zakończonej lekcji przez kursanta.
+    \item Sprawdzenie listy płatności kursanta.
+    \item Sprawdzenie harmonogramu szkoły w widoku managera.
+\end{enumerate}
+
+Każdy test manualny powinien określać warunki początkowe, kroki wykonania oraz oczekiwany rezultat. Dzięki temu testy mogą być powtarzane po każdej większej zmianie w aplikacji.
+
+\section{Testy regresji}
+\label{sec:testy-regresji}
+
+Testy regresji powinny być wykonywane po zmianach w logice harmonogramu, autoryzacji, modelu danych oraz formularzach. Szczególnie wrażliwe obszary to planowanie lekcji, sprawdzanie dostępności, przypisywanie danych do OSK oraz uprawnienia użytkowników.
+
+Minimalny zestaw regresji powinien obejmować uruchomienie testów automatycznych backendu i frontendu, sprawdzenie typów TypeScript, lintowanie oraz ręczne przejście najważniejszych scenariuszy GUI. Pozwala to szybko wykryć błędy w miejscach, które nie były bezpośrednio zmieniane, ale zależą od wspólnej logiki systemu.

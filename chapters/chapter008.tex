@@ -1,0 +1,14 @@
+\chapter{Podsumowanie}
+\label{cha:podsumowanie}
+
+Celem projektu OSK-Manager było zaprojektowanie systemu wspierającego zarządzanie ośrodkiem szkolenia kierowców. Analiza problemu pokazała, że szkoły jazdy potrzebują narzędzia, które centralizuje dane kursantów, instruktorów, pojazdów, kursów, lekcji, płatności i harmonogramu. Brak takiego systemu zwiększa ryzyko błędów organizacyjnych, zwłaszcza podwójnych rezerwacji instruktorów lub pojazdów.
+
+W dokumentacji opisano wymagania funkcjonalne i niefunkcjonalne systemu, a następnie przedstawiono modelowanie obejmujące diagram przypadków użycia, scenariusze przypadków użycia, diagramy aktywności, diagramy sekwencji, diagramy stanów oraz diagram klas. Modele te pokazują najważniejsze procesy systemu: planowanie lekcji praktycznej, ocenę zakończonej lekcji, cykl życia kursu oraz cykl życia lekcji.
+
+Projekt systemu opiera się na aplikacji webowej z podziałem na frontend, warstwę BFF, backend oraz relacyjną bazę danych. Frontend odpowiada za wygodny interfejs użytkownika, backend za logikę biznesową i walidację, a baza danych za trwałe przechowywanie informacji. Taki podział pozwala rozwijać system modułowo i utrzymywać czytelne granice odpowiedzialności.
+
+Najważniejszą częścią systemu jest harmonogram. Łączy on dane kursantów, instruktorów, kursów i pojazdów, dlatego wymaga szczególnej kontroli poprawności. System powinien uniemożliwiać planowanie lekcji w terminach konfliktowych, pilnować zgodności danych z właściwym OSK oraz pozwalać instruktorom i kursantom na szybki podgląd własnych zajęć.
+
+Istotną zaletą projektu jest także uwzględnienie różnych ról użytkowników. Manager zarządza szkołą, instruktor korzysta z harmonogramu i dostępności, kursant śledzi własny przebieg szkolenia, a administrator może nadzorować dane systemowe. Dzięki temu każda grupa użytkowników otrzymuje dostęp do funkcji zgodnych ze swoimi zadaniami.
+
+Projekt może być rozwijany w przyszłości o kolejne funkcje, takie jak rozbudowane raportowanie, automatyczne powiadomienia, integracje z płatnościami online, eksport dokumentów, panel administracyjny dla wielu szkół oraz bardziej zaawansowaną analitykę jakości szkolenia. Podstawowy model systemu tworzy jednak solidną bazę do dalszej rozbudowy, ponieważ obejmuje kluczowe obiekty domenowe i najważniejsze procesy działania ośrodka szkolenia kierowców.

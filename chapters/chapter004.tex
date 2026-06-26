@@ -1,0 +1,52 @@
+\chapter{Technologie i wymagania sprzętowe}
+\label{cha:technologie}
+
+Niniejszy rozdział opisuje technologie wykorzystane w systemie OSK-Manager oraz podstawowe wymagania potrzebne do uruchomienia aplikacji. Projekt ma charakter aplikacji webowej z oddzieloną częścią kliencką, warstwą pośredniczącą oraz backendem komunikującym się z bazą danych.
+
+\section{Technologie frontendowe}
+\label{sec:technologie-frontend}
+
+Część frontendowa systemu została przygotowana jako aplikacja oparta na frameworku \textit{Nuxt}. Framework ten bazuje na bibliotece \textit{Vue} i pozwala tworzyć aplikacje typu single page application oraz aplikacje renderowane po stronie serwera. W projekcie zastosowano język \textit{TypeScript}, dzięki czemu kod interfejsu użytkownika korzysta z typowania statycznego i jest łatwiejszy w utrzymaniu.
+
+Za warstwę wizualną odpowiada \textit{Tailwind CSS}. Umożliwia on budowanie spójnych widoków na podstawie klas narzędziowych, bez konieczności tworzenia rozbudowanych arkuszy stylów dla każdego elementu osobno. W projekcie wykorzystano również komponenty zbudowane wokół biblioteki \textit{shadcn-nuxt} oraz elementów interfejsu \textit{Reka UI}. Ikony w aplikacji pochodzą z biblioteki \textit{lucide-vue-next}.
+
+Frontend posiada także własną warstwę komunikacji z backendem. Część żądań przechodzi przez trasy serwerowe Nuxt, które pełnią funkcję BFF, czyli pośrednika między przeglądarką a właściwym API. Takie rozwiązanie ułatwia ukrycie szczegółów komunikacji z backendem, obsługę ciasteczek sesyjnych oraz wprowadzanie trybu demonstracyjnego lub mocków w środowisku deweloperskim.
+
+\section{Technologie backendowe}
+\label{sec:technologie-backend}
+
+Backend systemu został przygotowany w środowisku \textit{Node.js} z użyciem frameworka \textit{Express}. Kod backendu również napisano w języku \textit{TypeScript}. Express odpowiada za obsługę tras HTTP, rejestrowanie modułów API, obsługę ciasteczek, konfigurację CORS oraz przekazywanie błędów do wspólnego mechanizmu obsługi wyjątków.
+
+Dostęp do danych realizowany jest przez \textit{Prisma}. Prisma pełni rolę warstwy ORM i udostępnia typowany klient do komunikacji z bazą danych. Schemat bazy danych jest opisany w pliku \path{schema.prisma}, co ułatwia utrzymywanie relacji między encjami oraz generowanie klienta używanego w usługach backendowych.
+
+Do walidacji danych wejściowych użyto biblioteki \textit{Zod}. Schematy walidacyjne pozwalają sprawdzać poprawność danych przekazywanych do API niezależnie od walidacji wykonywanej w interfejsie użytkownika. Projekt wykorzystuje również mechanizmy \textit{OpenAPI} i \textit{Swagger UI}, dzięki którym możliwe jest dokumentowanie oraz testowanie kontraktu API.
+
+\section{Baza danych i usługi zewnętrzne}
+\label{sec:technologie-baza}
+
+System korzysta z relacyjnej bazy danych \textit{PostgreSQL}. Projekt został przystosowany do pracy z bazą Supabase Postgres, dlatego konfiguracja backendu wymaga connection stringa do bazy oraz kluczy Supabase. Supabase pełni w projekcie rolę dostawcy bazy danych oraz usług pomocniczych, takich jak przechowywanie plików lub integracja z mechanizmami autoryzacji.
+
+Wrażliwe dane konfiguracyjne, takie jak adres bazy danych, klucze Supabase oraz adres backendu, powinny być przechowywane w plikach środowiskowych. Klucze serwisowe nie powinny trafiać do kodu frontendu ani do publicznego repozytorium.
+
+\section{Narzędzia deweloperskie}
+\label{sec:narzedzia-deweloperskie}
+
+W projekcie wykorzystywane są narzędzia wspierające jakość kodu. \textit{ESLint} służy do statycznej analizy kodu i wykrywania potencjalnych błędów stylistycznych lub składniowych. \textit{Prettier} odpowiada za formatowanie kodu. Testy automatyczne uruchamiane są przy pomocy \textit{Vitest}. W części frontendowej dostępny jest również \textit{vue-tsc}, który pozwala sprawdzać poprawność typów w komponentach Vue.
+
+Backend udostępnia skrypty do uruchamiania aplikacji w trybie deweloperskim, budowania wersji produkcyjnej, generowania klienta Prisma, uruchamiania migracji, lintowania oraz testowania. Frontend udostępnia analogiczne skrypty dla aplikacji Nuxt, w tym uruchamianie trybu developerskiego, budowanie aplikacji, generowanie typów API oraz testy.
+
+\section{Wymagania sprzętowe i środowiskowe}
+\label{sec:wymagania-sprzetowe}
+
+Do uruchomienia aplikacji w środowisku deweloperskim wymagany jest komputer z zainstalowanym środowiskiem \textit{Node.js} oraz menedżerem pakietów \textit{npm}. Wymagany jest również dostęp do instancji bazy danych PostgreSQL, w projekcie przyjęto Supabase Postgres. Aplikacja backendowa domyślnie działa na porcie \texttt{3001}, natomiast frontend uruchamiany jest jako aplikacja Nuxt na porcie wskazanym przez środowisko developerskie.
+
+Minimalne wymagania środowiskowe obejmują:
+\begin{itemize}
+    \item środowisko Node.js zgodne z używanymi zależnościami projektu,
+    \item zainstalowane pakiety npm dla części frontendowej i backendowej,
+    \item dostęp do bazy PostgreSQL,
+    \item poprawnie skonfigurowane zmienne środowiskowe,
+    \item przeglądarkę internetową do korzystania z aplikacji.
+\end{itemize}
+
+W środowisku produkcyjnym backend i frontend powinny być uruchomione na stabilnym serwerze lub platformie hostingowej z obsługą aplikacji Node.js. Baza danych powinna być zabezpieczona hasłem, połączeniem szyfrowanym oraz ograniczeniem dostępu do kluczy serwisowych.
